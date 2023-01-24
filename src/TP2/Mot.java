@@ -3,21 +3,27 @@ package TP2;
  Classe representant un mot.
  
  @author Departement informatique
- @version 16.0128
+ @author Paul Gasnier
+ @version TP-2, 24/01/2023
  */
 class Mot {
+	/** Le texte du mot */
+	protected String texte;
 
 	/** Constructeur */
 	public Mot(String texte){
-		// A PROGRAMMER
+		this.texte = new String(texte);
 	}
 	
 	/** Teste l'egalite, insensible a la casse */
-	// A PROGRAMMER
+	public boolean equals(Object o) {
+		Mot m = (Mot)o;
+		return this.texte.equalsIgnoreCase(m.texte);
+	}
 
 	/** Retourne une version String du mot */
 	public String toString() {
-        return "X"; // A PROGRAMMER
+        return this.texte;
 	}
 
 	/**
@@ -27,6 +33,6 @@ class Mot {
 		Mot y = new Mot("Yann");
 		
 		System.out.println("egal a YANN ? " + y.equals(new Mot("YANN")));
-        // A PROGRAMMER : imaginer des tests supplementaires...
+        System.out.println(y);
 	}
 }

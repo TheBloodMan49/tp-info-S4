@@ -3,31 +3,46 @@ package TP2;
  Classe representant une personne associee a son numero de telephone.
 
  @author Departement informatique
- @version 16.0128
+ @author Paul Gasnier
+ @version TP-2, 24/01/2023
  */
 public class Personne {
-	
-	// CONSTRUCTEUR A PROGRAMMER
+
+	/** Le numero de telephone */
+	protected int tel;
+	/** Le prenom */
+	protected Mot prenom;
+	/** Le nom */
+	protected Mot nom;
+
+	/** Constructeur */
+	public Personne(String prenom, String nom) {
+		this.nom = new Mot(nom);
+		this.prenom = new Mot(prenom);
+	}
 
 	/** Associe le numero de telephone. */
 	public void setTel(int tel) {
-		// A PROGRAMMER
+		this.tel = tel;
 	}
 
 	/** Fournit le numero de telephone. */
 	public int getTel() {
-		return 112; // A PROGRAMMER
+		return this.tel;
 	}
 	
 	/** Teste l'égalite du nom et du prenom */
-	// A PROGRAMMER
+	public boolean equals(Object o) {
+		Personne p = (Personne) o;
+		return this.nom.equals(p.nom) && this.prenom.equals(p.prenom);
+	}
 
 	/**
      Produit une chaine indiquant la personne. 
      (Par exemple Jules CESAR)
 	 */
 	public String toString() {
-		return "X XXXXXXX"; // A PROGRAMMER
+		return this.prenom.toString()+" "+this.nom.toString().toUpperCase();
 	}
 
 	/**
