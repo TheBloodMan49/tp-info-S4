@@ -14,7 +14,16 @@ class Mot {
 	public Mot(String texte){
 		this.texte = new String(texte);
 	}
-	
+
+	/**
+	 * Retourne vrai si le mot est avant le mot m dans l'ordre alphabetique.
+	 * @param m Le mot a comparer
+	 * @return true si le mot est avant m dans l'ordre alphabetique, false sinon
+	 */
+	public boolean estAvant(Mot m) {
+		return this.texte.compareToIgnoreCase(m.texte) < 0;
+	}
+
 	/** Teste l'egalite, insensible a la casse */
 	public boolean equals(Object o) {
 		Mot m = (Mot)o;

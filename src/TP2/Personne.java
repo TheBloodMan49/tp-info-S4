@@ -15,10 +15,20 @@ public class Personne {
 	/** Le nom */
 	protected Mot nom;
 
-	/** Constructeur */
+	/** Constructeur à partir du prénom et du nom*/
 	public Personne(String prenom, String nom) {
 		this.nom = new Mot(nom);
 		this.prenom = new Mot(prenom);
+	}
+
+	/**
+	 * Constructeur à partir du prénom, du nom et du numéro de téléphone
+	 * Utile pour les tests
+	 */
+	public Personne(String prenom, String nom, int tel) {
+		this.nom = new Mot(nom);
+		this.prenom = new Mot(prenom);
+		this.tel = tel;
 	}
 
 	/** Associe le numero de telephone. */
@@ -29,6 +39,20 @@ public class Personne {
 	/** Fournit le numero de telephone. */
 	public int getTel() {
 		return this.tel;
+	}
+
+	/** Verifie si la personne est avant la personne p dans l'ordre alphabetique.
+	 * @param p La personne a comparer
+	 * @return true si la personne est avant p dans l'ordre alphabetique, false sinon
+	 */
+	public boolean estAvant(Personne p) {
+		if (this.nom.estAvant(p.nom)) {
+			return true;
+		} else if (this.nom.equals(p.nom)) {
+			return this.prenom.estAvant(p.prenom);
+		} else {
+			return false;
+		}
 	}
 	
 	/** Teste l'égalite du nom et du prenom */

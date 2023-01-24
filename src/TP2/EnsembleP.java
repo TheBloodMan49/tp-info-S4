@@ -4,7 +4,7 @@ package TP2;
  
  @author Departement informatique
  @author Paul Gasnier
- @version TP-1, 24/01/2023
+ @version TP-2, 24/01/2023
  */
 public class EnsembleP {
     /**
@@ -43,7 +43,7 @@ public class EnsembleP {
      * @param p la personne a ajouter
      */
     public void ajouter(Personne p) {
-        if (this.cardinal < this.CAPACITE_INITIALE) {
+        if (this.cardinal < EnsembleP.CAPACITE_INITIALE) {
             this.elements[this.cardinal] = p;
             this.cardinal++;
         }
@@ -83,7 +83,7 @@ public class EnsembleP {
      * @return l'union des deux ensembles ou null si la capacite est depassee
      */
     public EnsembleP union(EnsembleP e) {
-        if(this.cardinal + e.cardinal > this.CAPACITE_INITIALE) {
+        if(this.cardinal + e.cardinal > EnsembleP.CAPACITE_INITIALE) {
             return null;
         }
         EnsembleP res = new EnsembleP();
