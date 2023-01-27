@@ -79,8 +79,8 @@ public class Point {
    * @return Point barycentre
    */
   public Point barycentre(double a, double b, Point y) {
-    double mx = (this.x*a + y.x*b)/(a+b);
-    double my = (this.y*a + y.y*b)/(a+b);
+    double mx = (this.x + y.x)*b/(a+b);
+    double my = (this.y + y.y)*b/(a+b);
     return new Point(mx,my);
   }
 
