@@ -17,7 +17,10 @@ public class Droite {
      */
     public Droite(Point p1, Point p2) {
         this.p1 = new Point(p1);
-        this.p2 = new Point(p2);
+        if(p1.equals(p2))
+            this.p2 = new Point(p1.getX()+1,p1.getY()+1);
+        else
+            this.p2 = new Point(p2);
     }
 
     /**
