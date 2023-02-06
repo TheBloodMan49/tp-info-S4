@@ -20,7 +20,7 @@ public class Annuaire extends EnsembleP {
     public String toString() {
         String s = "";
         for (int i = 0; i < this.cardinal; i++) {
-            s += this.elements[i] + ": " + this.elements[i].tel + ", ";
+            s += this.elements[i] + ": " + this.elements[i].tel + "\n";
         }
         return s;
     }
