@@ -8,7 +8,7 @@
 <?import javafx.scene.chart.PieChart?>
 
 <BorderPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-			fx:controller="tp.controleur.UIControleur">
+			fx:controller="TP6.controleur.UIControleur">
 	<top>
 		<ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
 			<Label text="Équation :"/>

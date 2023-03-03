@@ -26,6 +26,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="ps" level="application" />
+    <orderEntry type="library" name="ps" level="project" />
   </component>
 </module>
