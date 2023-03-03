@@ -3,6 +3,8 @@
  */
 package TP5.library;
 
+import TP5.comparators.TitleComparator;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,7 +23,7 @@ public class LibraryCLUI {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Collection<Document> c = Document.loadFromFile("relire-test.csv");
+		Collection<Document> c = Document.loadFromFile("assets/TP5/relire-test.csv");
 		Library library = new Library(c);
 		LibraryCLUI clui = new LibraryCLUI(library);
 		clui.run();
@@ -192,8 +194,6 @@ public class LibraryCLUI {
 	 * associated to this author 
 	 */
 	private void searchByAuthor() {
-		/*
-		//TODO uncomment
 		System.out.println("Enter author name:");
 		String author = getUserEntry();
 		Collection<Document> result = library.getDocumentByAuthor(author);
@@ -201,7 +201,6 @@ public class LibraryCLUI {
 		for(Document doc : result){
 			System.out.println(doc);
 		}
-		*/
 	}
 
 	/**
@@ -227,10 +226,7 @@ public class LibraryCLUI {
 	 * Print library content ordered by title
 	 */
 	private void printContentByTitle() {
-		/*
-		//TODO uncomment
 		Comparator<Document> c = new TitleComparator();
 		System.out.println(library.toString(c));
-		*/
 	}
 }
