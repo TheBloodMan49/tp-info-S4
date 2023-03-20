@@ -38,12 +38,12 @@ public class UIControleur implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		//Q2
-//		lireFichier();
+		lireFichier();
 		
 		//Q1
-		pie.getData().add(new Data("Données 1", 33));
-		pie.getData().add(new Data("Données 2", 33));
-		pie.getData().add(new Data("Données 3", 33));
+//		pie.getData().add(new Data("Données 1", 33));
+//		pie.getData().add(new Data("Données 2", 33));
+//		pie.getData().add(new Data("Données 3", 33));
 		
 		// Sets the position of the legend.
 		pie.setLegendSide(Side.LEFT);
@@ -54,18 +54,21 @@ public class UIControleur implements Initializable {
 		courbe.setMaxX(360);
 		
 		// Q6
-//		courbe.equationProperty().bindBidirectional(eqField.textProperty());
-//		courbe.setEquation("x");
-//		updatePlot();
+		courbe.equationProperty().bindBidirectional(eqField.textProperty());
+		courbe.setEquation("x");
+		updatePlot();
 	}
 	
 	
 	private void lireFichier() {
-		try(FileReader fr = new FileReader(new File("data.txt"));
+		try(FileReader fr = new FileReader(new File("assets/TP6/data.txt"));
 			BufferedReader br = new BufferedReader(fr)) {
 
-			String line = br.readLine();
-			//TODO Q2
+			while (br.ready()) {
+				String line = br.readLine();
+				String[] data = line.split(";");
+				pie.getData().add(new Data(data[0], Double.parseDouble(data[1])));
+			}
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -77,8 +80,10 @@ public class UIControleur implements Initializable {
 		XYChart.Series<Double,Double> series = new XYChart.Series<>();
 		curve.getData().clear();
 
-		// TODO Q8
-		updatePlotCartesian(series.getData());
+		if (polarBox.isSelected())
+			updatePlotPolar(series.getData());
+		else
+			updatePlotCartesian(series.getData());
 		
 		curve.getData().add(series);
 	}
@@ -106,12 +111,25 @@ public class UIControleur implements Initializable {
 
 	@FXML
 	void onNbPtsEquationChanged(ActionEvent evt) {
-		//TODO Q11
+		courbe.setNombrePoints(Integer.parseInt(nbField.getText()));
+		updatePlot();
 	}
 	
 	
 	@FXML
 	void onPolarBox(ActionEvent evt) {
+		updatePlot();
+	}
+
+	@FXML
+	void onXminChanged(ActionEvent evt) {
+		courbe.setMinX(Double.parseDouble(((TextField)evt.getSource()).getText()));
+		updatePlot();
+	}
+
+	@FXML
+	void onXmaxChanged(ActionEvent evt) {
+		courbe.setMaxX(Double.parseDouble(((TextField)evt.getSource()).getText()));
 		updatePlot();
 	}
 	

@@ -16,15 +16,30 @@
 				<tooltip><Tooltip text="L'équation de la fonction à afficher." /></tooltip>
 			</TextField>
 			<Label text="Nombre de points :"/>
-			<!-- Q9  -->
-			<!-- Q8  -->
+			<TextField fx:id="nbField" onAction="#onNbPtsEquationChanged"/>
+			<Label text="Polaire ?"/>
+			<CheckBox fx:id="polarBox" onAction="#onPolarBox" />
+			<Label text="Xmin :"/>
+			<TextField fx:id="xminField" onAction="#onXminChanged"/>
+			<Label text="Xmax :"/>
+			<TextField fx:id="xmaxField" onAction="#onXmaxChanged"/>
 		</ToolBar>
 	</top>
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
           <Tab text="Pie">
-              <PieChart fx:id="pie" />
-            </Tab>
+			  <PieChart fx:id="pie" />
+		  </Tab>
+		  <Tab text="Graph">
+				  <ScatterChart fx:id="curve" legendVisible="false">
+					  <xAxis>
+						  <NumberAxis autoRanging="false" label="X" lowerBound="-50" upperBound="50" />
+					  </xAxis>
+					  <yAxis>
+						  <NumberAxis autoRanging="false" label="Y" lowerBound="-50" upperBound="50" />
+					  </yAxis>
+				  </ScatterChart>
+		  </Tab>
       </TabPane>
    </center>
 </BorderPane>
