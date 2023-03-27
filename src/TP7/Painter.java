@@ -54,7 +54,7 @@ public class Painter {
 	 * distance
 	 */
 	public void drawShape(ShapeDisplayer jap) {
-		for (int i = 0; i < forme.nbfac(); i++) {
+		for (int i = forme.nbfac()-1; i >= 0; i--) {
 			jap.displayFacette(forme.getFacette(i));
 		}
 	}
@@ -85,31 +85,33 @@ public class Painter {
 		Painter p = new Painter(org);
 		// Nouvelle instance de painter
 
+		/*
 		p.forme.load("assets/TP7/tore-unsorted.txt");// lecture d'une forme dans un fichier
 		// p.forme.random(120);
 		p.forme.computeBarycentres();
 		p.forme.computeDistances(p.origin);
 		p.forme.setGreyLevels();
 		// Décommenter ce qui suit pour trier les facettes
-		// p.forme.trieFacettes();
+		p.forme.trieFacettes();
 
 		applet.clear();// efface la fenetre
 		p.drawShape(applet); // dessine la forme
+		*/
 
-		// décommenter ce qui sui tpour sauver la forme dans un ficheir
+		// décommenter ce qui suit pour sauver la forme dans un ficheir
 		// p.forme.save("random.txt");
 
 		// Q9
 		// décommenter ce qui suit pour faire une forme aléatoire
-		// p.forme.random(120);
-		// p.forme.computeBarycentres();
-		// p.forme.computeDistances(p.origin);
-		// p.forme.setGreyLevels();
+		p.forme.random(120);
+		p.forme.computeBarycentres();
+		p.forme.computeDistances(p.origin);
+		p.forme.setGreyLevels();
 		// Décommenter ce qui sui tpour trier les facettes
-		// p.forme.trieFacettes();
+		p.forme.trieFacettes();
 
-		// applet.clear();// efface la fenetre
-		// p.drawShape(applet); // dessine la forme
+		applet.clear();// efface la fenetre
+		p.drawShape(applet); // dessine la forme
 
 	}
 

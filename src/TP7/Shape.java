@@ -38,8 +38,8 @@ public class Shape {
 	 * ree une table de MAX_FAC facettes remplie de nbf facettes aléatoires
 	 */
 	public Shape(int nbf) {
-		// TODO
-		// Q9
+		this();
+		this.random(nbf);
 	}
 
 	/**
@@ -71,9 +71,16 @@ public class Shape {
 	 * @param nb est le nombre de facettes générées
 	 */
 	public void random(int nb) {
-
-		// TODO
-		// Q9
+		for (int i = 0; i < nb && i < MAX_FAC; i++) {
+			Point x = new Point();
+			x.randomCoord();
+			Point y = new Point();
+			y.randomCoord();
+			Point z = new Point();
+			z.randomCoord();
+			Facette fac = new Facette(x,y,z);
+			this.add(fac);
+		}
 	}
 
 	/**
@@ -144,7 +151,7 @@ public class Shape {
 	 */
 	public void computeDistances(Point origin) {
 		for (int i = 0; i < nbfac; i++) {
-			tab[i].distance(origin);
+			tab[i].setDistance(origin);
 		}
 	}
 
@@ -153,11 +160,8 @@ public class Shape {
 	 * les distances doivent avoir été caclulées
 	 */
 	public double findMaxDistance() {
-		if (nbfac == 0)
-			return 0;
-
-		double max = tab[0].getDistance();
-		for (int i = 1; i < nbfac; i++) {
+		double max = -1.0d;
+		for (int i = 0; i < nbfac; i++) {
 			if (tab[i].getDistance() > max)
 				max = tab[i].getDistance();
 		}
@@ -169,11 +173,8 @@ public class Shape {
 	 * les distances doivent avoir été caclulées
 	 */
 	public double findMinDistance() {
-		if (nbfac == 0)
-			return 0;
-
-		double min = tab[0].getDistance();
-		for (int i = 1; i < nbfac; i++) {
+		double min = -1.0f;
+		for (int i = 0; i < nbfac; i++) {
 			if (tab[i].getDistance() < min)
 				min = tab[i].getDistance();
 		}
@@ -189,11 +190,10 @@ public class Shape {
 	public void setGreyLevels() {
 		double max = findMaxDistance();
 		double min = findMinDistance();
-		double delta = max - min;
-		for (int i = 0; i < nbfac; i++) {
-			double d = tab[i].getDistance();
-			int grey = (int) (50 + (d - min) * 170 / delta);
-			tab[i].setColor(grey);
+		for (int i = 0; i < this.nbfac; i++)  {
+			double d = this.tab[i].getDistance();
+			int l = 50+(int)Math.round((d-min)/(max-min) * 170.0d);
+			this.tab[i].setColor(l);
 		}
 	}
 
@@ -202,7 +202,32 @@ public class Shape {
 	 * l'origine on utilisera un des algorithmes vus en cours
 	 */
 	public void trieFacettes() {
+		this.quicksort(0, this.nbfac-1, 0);
+	}
 
+	public void quicksort(int start, int end, int depth) {
+		if (start < end) {
+			int pivot = quicksortPartition(start, end);
+			quicksort(start, pivot-1, depth+1);
+			quicksort(pivot+1, end, depth+1);
+		}
+	}
+
+	public int quicksortPartition(int start, int end) {
+		double pivot = this.tab[end].getDistance();
+		int i = start-1;
+		for (int j = start; j < end; j++) {
+			if (this.tab[j].getDistance() <= pivot) {
+				i++;
+				Facette tmp = this.tab[i];
+				this.tab[i] = this.tab[j];
+				this.tab[j] = tmp;
+			}
+		}
+		Facette tmp = this.tab[i+1];
+		this.tab[i+1] = this.tab[end];
+		this.tab[end] = tmp;
+		return i+1;
 	}
 
 	/**

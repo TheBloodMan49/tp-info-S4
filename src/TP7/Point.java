@@ -26,9 +26,9 @@ public class Point {
 	 * change les coordonnées d'un point de manière aléatoire
 	 */
 	public void randomCoord() {
-		// TODO
-		// Q9
-
+		this.x = Math.random() * 500;
+		this.y = Math.random() * 500;
+		this.z = Math.random() * 500;
 	}
 
 	public double x() {

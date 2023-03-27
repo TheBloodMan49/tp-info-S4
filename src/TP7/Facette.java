@@ -110,7 +110,6 @@ public class Facette {
 	public void setDistance(Point p) {
 
 		double d = this.distance(p);
-		System.out.println(d);
 		this.distance = d;
 
 	}
@@ -132,7 +131,7 @@ public class Facette {
 	 * 
 	 */
 	public double distance(Point p) {
-		return this.barycentre.distance(p);
+		return p.distance(this.barycentre);
 	}
 
 	/**
